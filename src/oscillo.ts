@@ -1,13 +1,17 @@
 // 参考: https://qiita.com/mhagita/items/6c7d73932d9a207eb94d
 
-navigator.getUserMedia =
-  navigator.getUserMedia ||
-  navigator.webkitGetUserMedia ||
-  navigator.mozGetUserMedia;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(navigator as any).getUserMedia =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (navigator as any).getUserMedia ||
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (navigator as any).webkitGetUserMedia ||
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (navigator as any).mozGetUserMedia;
 
-const canvas = document.getElementById('wave_canvas');
-const fft_canvas = document.getElementById('fft_canvas');
-const container = document.getElementById('canvas_container');
+const canvas = document.getElementById('wave_canvas') as HTMLCanvasElement;
+const fft_canvas = document.getElementById('fft_canvas') as HTMLCanvasElement;
+const container = document.getElementById('canvas_container') as HTMLDivElement;
 
 canvas.width = container.clientWidth;
 canvas.height = (canvas.width * 3) / 4;
@@ -34,16 +38,13 @@ const waveColor = '#ff0';
 const bufferSize = 1024;
 
 // objects for api
-let localMediaStream = null;
-let localScriptProcessor = null;
-let audioContext = null;
-let audioAnalyser = null;
-let audioData = []; // wave data
+let audioContext: AudioContext | null = null;
+let audioData: number[] = []; // wave data
 
 // fft
 const fft_points = 4096;
-let fft_max_freq = 10000;
-let fftData = [];
+const fft_max_freq = 10000;
+let fftData: number[] = [];
 
 // flags
 let recording = false;
@@ -61,6 +62,7 @@ let triggeredIndicator = 0;
 
 function trigger_check() {
   if (!initialized) return;
+  if (!audioContext) return;
 
   // abort if triggering has not ended
   const indexSize = divsize_x * x_divs * audioContext.sampleRate;
@@ -89,7 +91,7 @@ function trigger_check() {
   triggerLastChecked = audioData.length;
 }
 
-function trigger(index) {
+function trigger(index: number) {
   triggerDelta = index - triggerIndex;
   triggerIndex = index;
   triggeredIndicator = 3;
@@ -103,22 +105,22 @@ function fft() {
   if (data.length < fft_points) return;
 
   // calc w
-  const w = [
+  const w: Complex = [
     Math.cos((Math.PI * 2) / fft_points),
     -Math.sin((Math.PI * 2) / fft_points),
   ];
   fftData = fft_r(
     data.map((r) => [r, 0]),
     w,
-  ).map((c) => complex_abs(c));
+  ).map((c: Complex) => complex_abs(c));
 
-  function fft_r(x, w) {
+  function fft_r(x: Complex[], w: Complex): Complex[] {
     const N = x.length;
     if (N == 1) return x;
 
-    let x_even = [...Array(N / 2)];
-    let x_odd = [...Array(N / 2)];
-    let W = [1, 0];
+    const x_even: Complex[] = [...Array(N / 2)];
+    const x_odd: Complex[] = [...Array(N / 2)];
+    let W: Complex = [1, 0];
 
     for (let i = 0; i < N / 2; i++) {
       x_even[i] = complex_add(x[i], x[i + N / 2]);
@@ -138,19 +140,21 @@ function fft() {
   }
 }
 
-function complex_add(a, b) {
+type Complex = [number, number];
+
+function complex_add(a: Complex, b: Complex): Complex {
   return [a[0] + b[0], a[1] + b[1]];
 }
 
-function complex_sub(a, b) {
+function complex_sub(a: Complex, b: Complex): Complex {
   return [a[0] - b[0], a[1] - b[1]];
 }
 
-function complex_mul(a, b) {
+function complex_mul(a: Complex, b: Complex): Complex {
   return [a[0] * b[0] - a[1] * b[1], a[1] * b[0] + a[0] * b[1]];
 }
 
-function complex_abs(a) {
+function complex_abs(a: Complex): number {
   return Math.sqrt(a[0] * a[0] + a[1] * a[1]);
 }
 
@@ -174,13 +178,14 @@ function drawText() {
     trigger_type == 'up'
       ? `Trigger Level ${triggerLevel.toFixed(2)}↑ ${trigger_indicate}`
       : 'No Trigger';
-  document.getElementById(
-    'bottomDisplay',
+  (
+    document.getElementById('bottomDisplay') as HTMLDivElement
   ).innerHTML = `${divsize_x_disp} <span style="color: orange">${trigger_disp}</span>`;
 }
 
 function drawWave() {
   const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('canvas context is null');
   ctx.clearRect(0, 0, width, height);
 
   ctx.strokeStyle = '#fff';
@@ -230,6 +235,7 @@ function drawWave() {
 
   if (!initialized) return;
 
+  if (!audioContext) throw new Error('audio context is null');
   const length = divsize_x * x_divs * audioContext.sampleRate;
   const startIndex = triggerIndex;
 
@@ -257,6 +263,7 @@ function drawWave() {
 
 function drawFFT() {
   const ctx = fft_canvas.getContext('2d');
+  if (!ctx) throw new Error('canvas context is null');
   ctx.clearRect(0, 0, width, height);
 
   ctx.strokeStyle = '#fff';
@@ -295,6 +302,7 @@ function drawFFT() {
   [...Array(width)]
     .map((_, i) => i)
     .forEach((x) => {
+      if (!audioContext) throw new Error('audio context is null');
       const index = Math.floor(
         (((x * fft_max_freq) / audioContext.sampleRate) * fft_points) / width,
       );
@@ -308,7 +316,7 @@ function drawFFT() {
 
 function toggleRecording() {
   recording = !recording;
-  const button = document.getElementById('togglebutton');
+  const button = document.getElementById('togglebutton') as HTMLButtonElement;
   button.innerHTML = recording ? 'Running' : 'Stopped';
   if (recording) {
     button.classList.add('button-running');
@@ -323,23 +331,24 @@ function toggleRecording() {
 
 function initialize() {
   audioContext = new AudioContext();
-  navigator.getUserMedia(
+  if (!audioContext) throw new Error('cannnot get audioContext');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (navigator as any).getUserMedia(
     { audio: true },
-    (stream) => {
-      localMediaStream = stream;
+    (stream: MediaStream) => {
+      if (!audioContext) throw new Error('audioContext is null');
       const scriptProcessor = audioContext.createScriptProcessor(
         bufferSize,
         1,
         1,
       );
-      localScriptProcessor = scriptProcessor;
       const mediastreamsource = audioContext.createMediaStreamSource(stream);
       mediastreamsource.connect(scriptProcessor);
       scriptProcessor.onaudioprocess = onAudioProcess;
       scriptProcessor.connect(audioContext.destination);
     },
-    (e) => {
-      console.log(e);
+    (e: Error) => {
+      console.error(e);
     },
   );
 
@@ -347,10 +356,11 @@ function initialize() {
 }
 
 // recording loop
-function onAudioProcess(e) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function onAudioProcess(e: any) {
   if (!recording) return;
 
-  let input = e.inputBuffer.getChannelData(0);
+  const input = e.inputBuffer.getChannelData(0);
   audioData = [...audioData, ...input];
 }
 
@@ -392,25 +402,38 @@ function divsize_x_up() {
 
 // UIのボタンのトリガーを設定
 
-document.getElementById('togglebutton').addEventListener('click', () => {
-  toggleRecording();
-});
+(document.getElementById('togglebutton') as HTMLButtonElement).addEventListener(
+  'click',
+  () => {
+    toggleRecording();
+  },
+);
 
-document.getElementById('divSizeXDownButton').addEventListener('click', () => {
+(
+  document.getElementById('divSizeXDownButton') as HTMLButtonElement
+).addEventListener('click', () => {
   divsize_x_down();
 });
-document.getElementById('divSizeXUpButton').addEventListener('click', () => {
+(
+  document.getElementById('divSizeXUpButton') as HTMLButtonElement
+).addEventListener('click', () => {
   divsize_x_up();
 });
 
-document.getElementById('toggleTriggerButton').addEventListener('click', () => {
+(
+  document.getElementById('toggleTriggerButton') as HTMLButtonElement
+).addEventListener('click', () => {
   toggleTrigger();
 });
 
-document.getElementById('triggerUpButton').addEventListener('click', () => {
+(
+  document.getElementById('triggerUpButton') as HTMLButtonElement
+).addEventListener('click', () => {
   triggerLevel += 0.05;
 });
-document.getElementById('triggerDownButton').addEventListener('click', () => {
+(
+  document.getElementById('triggerDownButton') as HTMLButtonElement
+).addEventListener('click', () => {
   triggerLevel -= 0.05;
 });
 
