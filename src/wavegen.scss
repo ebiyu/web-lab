@@ -1,0 +1,38 @@
+button {
+  font-size: 2em;
+  margin: 5px;
+  padding: 5px;
+  min-width: 50px;
+}
+#bodyWrap {
+  margin: auto;
+  width: 100%;
+  max-width: 1000px;
+}
+#freqDisp,
+#typeDisp {
+  background-color: black;
+  color: lightgreen;
+  padding: 0 20px;
+}
+#freqDisp {
+  font-size: 10em;
+  text-align: right;
+}
+#canvas_container {
+  width: 100%;
+  max-width: 800px;
+  display: inline-block;
+  /* background-color: #111; */
+}
+canvas {
+  display: 100%;
+}
+.freq-btn {
+  display: block;
+  text-align: right;
+  width: 100%;
+}
+.freq-btn-wrap {
+  margin: 0 5px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Oscilloscope</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="bodyWrap">
+      <div id="freqDisp"></div>
+      <div id="typeDisp"></div>
+      <div style="display: flex">
+        <button id="togglebutton">Run</button>
+        <div class="freq-btn-wrap">
+          <button class="freq-btn" data-freq-change="1000">+1000</button>
+          <button class="freq-btn" data-freq-change="1000">-1000</button>
+        </div>
+        <div class="freq-btn-wrap">
+          <button class="freq-btn" data-freq-change="100">+100</button>
+          <button class="freq-btn" data-freq-change="100">-100</button>
+        </div>
+        <div class="freq-btn-wrap">
+          <button class="freq-btn" data-freq-change="10">+10</button>
+          <button class="freq-btn" data-freq-change="10">-10</button>
+        </div>
+        <div class="freq-btn-wrap">
+          <button class="freq-btn" data-freq-change="1">+1</button>
+          <button class="freq-btn" data-freq-change="1">-1</button>
+        </div>
+        <div class="freq-btn-wrap">
+          <button class="freq-btn" data-freq-change="0.1">+0.1</button>
+          <button class="freq-btn" data-freq-change="0.1">-0.1</button>
+        </div>
+      </div>
+      <div style="display: flex">
+        <button class="wave-btn" data-wave-type="sine">sin</button>
+        <button class="wave-btn" data-wave-type="square">square</button>
+        <button class="wave-btn" data-wave-type="sawtooth">sawtooth</button>
+        <button class="wave-btn" data-wave-type="triangle">triangle</button>
+      </div>
+    </div>
+    <!-- <script src="main.js"></script> -->
+  </body>
+</html>
