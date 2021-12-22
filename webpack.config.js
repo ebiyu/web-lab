@@ -51,6 +51,8 @@ glob.sync('**/*.html', { cwd: 'src' }).forEach((htmlName) => {
   const tsPath = path.resolve('src', tsName);
   const scssName = baseName + '.scss';
   const scssPath = path.resolve('src', scssName);
+  const cssName = baseName + '.css';
+  const cssPath = path.resolve('src', cssName);
 
   let chunks = ['common.js'];
   if (fs.existsSync(tsPath)) {
@@ -64,6 +66,9 @@ glob.sync('**/*.html', { cwd: 'src' }).forEach((htmlName) => {
   if (fs.existsSync(scssPath)) {
     webpackConfig.entry[scssName + '.js'] = scssPath;
     chunks.push(scssName + '.js');
+  } else if (fs.existsSync(cssPath)) {
+    webpackConfig.entry[cssName + '.js'] = cssPath;
+    chunks.push(cssName + '.js');
   }
 
   webpackConfig.plugins.push(
