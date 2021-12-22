@@ -1,0 +1,15 @@
+#can {
+  border: 1px solid #000;
+}
+
+.container {
+  display: flex;
+  /* color: rgb(19, 19, 19); */
+}
+
+#instruction {
+  flex: 1;
+  padding: 5px;
+  font-size: 0.7em;
+  margin-left: 20px;
+}
