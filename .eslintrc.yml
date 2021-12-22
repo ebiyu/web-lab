@@ -17,3 +17,6 @@ rules:
     - warn
     - allow:
         - error
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - args: none
