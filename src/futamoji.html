@@ -8,144 +8,149 @@
   <body>
     <h1>2文字アイコンメーカー</h1>
     (3文字以上にも対応しました)
+    <div class="body">
+      <div>
+        <form name="js">
+          文字:
+          <input id="textInput" type="text" name="moji" value="えこ" /><br />
+          色(RGB指定):#
+          <input type="text" name="colf" id="fgbox" /><br />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #000000"
+            onclick="document.js.colf.value='000000';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ffffff"
+            onclick="document.js.colf.value='ffffff';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ff0000"
+            onclick="document.js.colf.value='ff0000';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ffff00"
+            onclick="document.js.colf.value='ffff00';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #0000ff"
+            onclick="document.js.colf.value='0000ff';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #00ff00"
+            onclick="document.js.colf.value='00ff00';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ff00ff"
+            onclick="document.js.colf.value='ff00ff';"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #00ffff"
+            onclick="document.js.colf.value='00ffff';"
+          /><br />
+          <div class="color_palette" id="color_palette">
+            <div id="slider_h" class="slider">
+              <div></div>
+              <input type="button" />
+            </div>
+            <input type="text" id="value_h" onkeyup="moveTo(this,0)" />
+            <div id="slider_s" class="slider">
+              <div></div>
+              <input type="button" />
+            </div>
+            <input type="text" id="value_s" onkeyup="moveTo(this,1)" />
+            <div id="slider_b" class="slider">
+              <div></div>
+              <input type="button" />
+            </div>
+            <input type="text" id="value_b" onkeyup="moveTo(this,2)" />
+          </div>
 
-    <form name="js">
-      文字:
-      <input id="textInput" type="text" name="moji" value="えこ" /><br />
-      色(RGB指定):#
-      <input type="text" name="colf" id="fgbox" /><br />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #000000"
-        onclick="document.js.colf.value='000000';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ffffff"
-        onclick="document.js.colf.value='ffffff';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ff0000"
-        onclick="document.js.colf.value='ff0000';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ffff00"
-        onclick="document.js.colf.value='ffff00';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #0000ff"
-        onclick="document.js.colf.value='0000ff';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #00ff00"
-        onclick="document.js.colf.value='00ff00';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ff00ff"
-        onclick="document.js.colf.value='ff00ff';"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #00ffff"
-        onclick="document.js.colf.value='00ffff';"
-      /><br />
-      <div class="color_palette" id="color_palette">
-        <div id="slider_h" class="slider">
-          <div></div>
-          <input type="button" />
-        </div>
-        <input type="text" id="value_h" onkeyup="moveTo(this,0)" />
-        <div id="slider_s" class="slider">
-          <div></div>
-          <input type="button" />
-        </div>
-        <input type="text" id="value_s" onkeyup="moveTo(this,1)" />
-        <div id="slider_b" class="slider">
-          <div></div>
-          <input type="button" />
-        </div>
-        <input type="text" id="value_b" onkeyup="moveTo(this,2)" />
+          背景色(RGB指定):#
+          <input type="text" name="colb" value="ffffff" id="bgbox" />
+          <input
+            id="transparentButton"
+            type="button"
+            value="透過"
+            onclick="document.js.colb.value=''"
+          /><br />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #000000"
+            onclick="document.js.colb.value='000000'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ffffff"
+            onclick="document.js.colb.value='ffffff'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ff0000"
+            onclick="document.js.colb.value='ff0000'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ffff00"
+            onclick="document.js.colb.value='ffff00'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #0000ff"
+            onclick="document.js.colb.value='0000ff'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #00ff00"
+            onclick="document.js.colb.value='00ff00'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #ff00ff"
+            onclick="document.js.colb.value='ff00ff'"
+          />
+          <input
+            type="button"
+            class="color-button"
+            style="background-color: #00ffff"
+            onclick="document.js.colb.value='00ffff'"
+          /><br />
+        </form>
       </div>
+      <div>
+        <canvas id="cv1" width="480" height="480"></canvas>
+      </div>
+      <div><img width="370" height="370" id="newImg" /></div>
+    </div>
 
-      背景色(RGB指定):#
-      <input type="text" name="colb" value="ffffff" id="bgbox" />
-      <input
-        id="transparentButton"
-        type="button"
-        value="透過"
-        onclick="document.js.colb.value=''"
-      /><br />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #000000"
-        onclick="document.js.colb.value='000000'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ffffff"
-        onclick="document.js.colb.value='ffffff'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ff0000"
-        onclick="document.js.colb.value='ff0000'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ffff00"
-        onclick="document.js.colb.value='ffff00'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #0000ff"
-        onclick="document.js.colb.value='0000ff'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #00ff00"
-        onclick="document.js.colb.value='00ff00'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #ff00ff"
-        onclick="document.js.colb.value='ff00ff'"
-      />
-      <input
-        type="button"
-        class="color-button"
-        style="background-color: #00ffff"
-        onclick="document.js.colb.value='00ffff'"
-      /><br />
-    </form>
-
-    <canvas id="cv1" width="480" height="480"></canvas>
     <script>
       var cvs = document.getElementById('cv1');
       var ctx = cvs.getContext('2d');
       cv1.style.display = 'none';
     </script>
 
-    <div><img width="370" height="370" id="newImg" /></div>
     <a href="https://github.com/ebiyuu1121/futamoji">ソースコード</a>
   </body>
 </html>

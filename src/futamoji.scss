@@ -1,3 +1,7 @@
+body {
+  margin: 10px;
+}
+
 div.color_palette {
   position: relative;
   width: 345px;
@@ -75,4 +79,10 @@ div.color_palette input[type='text'] {
 
   background: #f7f7f7;
   border: solid 1px #888;
+}
+
+.body {
+  @include md {
+    display: flex;
+  }
 }
