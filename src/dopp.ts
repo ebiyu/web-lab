@@ -257,3 +257,5 @@ function drawCircle(rad: number, x: number, y: number) {
   ctx.stroke();
   ctx.fill();
 }
+
+export {};
