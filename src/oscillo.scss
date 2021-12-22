@@ -1,18 +1,72 @@
-button {
-  font-size: 2em;
+body {
+  background-color: lightgray;
+  padding: 5px;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column-reverse;
+  @include sm {
+    flex-direction: row;
+  }
+  gap: 5px;
+}
+
+.panel {
+  background-color: lightgray;
+  flex-grow: 1;
+}
+
+.panel-group {
   margin: 5px;
   padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.panel-group-label {
+  color: black;
+}
+
+button {
+  background-color: white;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-size: 1.5em;
+  margin: 2px;
+  padding: 5px 10px;
   min-width: 50px;
+}
+
+.button-running {
+  background-color: lime;
+}
+.button-stop {
+  background-color: tomato;
+}
+
+.canvas-wrap {
+  display: flex;
+  flex-direction: column;
+  @include lg {
+    flex-direction: row;
+  }
+  gap: 5px;
 }
 
 #canvas_container,
 #fft_canvas_container {
   width: 100%;
   max-width: 600px;
-  display: inline-block;
   background-color: #111;
 }
 
 canvas {
   width: 100%;
+}
+
+.button-row {
+  display: inline;
+  @include sm {
+    display: block;
+  }
 }

@@ -308,9 +308,16 @@ function drawFFT() {
 
 function toggleRecording() {
   recording = !recording;
-  document.getElementById('togglebutton').innerHTML = recording
-    ? 'Stop'
-    : 'Run';
+  const button = document.getElementById('togglebutton');
+  button.innerHTML = recording ? 'Running' : 'Stopped';
+  if (recording) {
+    button.classList.add('button-running');
+    button.classList.remove('button-stop');
+  } else {
+    button.classList.remove('button-running');
+    button.classList.add('button-stop');
+  }
+
   if (!initialized) initialize();
 }
 
