@@ -6,12 +6,12 @@ const width = canvas.width;
 const height = canvas.height;
 
 const hagenImgRight = new Image();
-hagenImgRight.src = require('./dopp/img/ambulance.png');
+hagenImgRight.src = require('./img/dopp/ambulance.png');
 const hagenImgLeft = new Image();
-hagenImgLeft.src = require('./dopp/img/ambulance-rev.png');
+hagenImgLeft.src = require('./img/dopp/ambulance-rev.png');
 
 const icaston = new Image();
-icaston.src = require('./dopp/img/caston.png');
+icaston.src = require('./img/dopp/caston.png');
 
 let running = true;
 let speed = 0.5;
