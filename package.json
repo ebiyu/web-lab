@@ -5,6 +5,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
+    "eslint": "^8.5.0",
     "glob": "^7.2.0",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
@@ -20,6 +23,13 @@
     "watch:webpack": "webpack  --mode=development --watch",
     "build": "run-s clean build:*",
     "build:webpack": "webpack  --mode=production",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "lint": "run-s lint:*",
+    "lint:js": "eslint src",
+    "format": "prettier src --write"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
   }
 }
