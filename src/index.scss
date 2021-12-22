@@ -1,0 +1,28 @@
+body {
+  padding: 10px;
+}
+.works {
+  display: flex;
+  margin: 5px;
+}
+
+.work {
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 5px;
+  display: block;
+  text-decoration: none;
+}
+
+.work-thumbnail {
+  display: block;
+  margin: 4px;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.work-caption {
+  text-align: center;
+  color: #000;
+}
