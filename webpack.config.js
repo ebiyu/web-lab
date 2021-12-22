@@ -10,18 +10,29 @@ const webpackConfig = {
     filename: "[name]",
     path: path.resolve(__dirname, "dist"),
   },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
   plugins: [],
 };
 
 // cf. https://www.key-p.com/blog/staff/archives/107125
-glob.sync("**/*.js", { cwd: "src" }).forEach((jsName) => {
-  const htmlName = path.basename(jsName, ".js") + ".html";
+glob.sync("**/*(*.js|*.ts)", { cwd: "src" }).forEach((scriptName) => {
+  const scriptBaseName = path.basename(path.basename(scriptName, ".js"), ".ts");
+  const jsName = scriptBaseName + ".js";
+  const htmlName = scriptBaseName + ".html";
   const htmlPath = path.resolve(__dirname, "src", htmlName);
 
   // htmlが存在するときのみ処理を行う
   if (fs.existsSync(htmlPath)) {
     // js
-    webpackConfig.entry[jsName] = path.resolve("src", jsName);
+    webpackConfig.entry[jsName] = path.resolve("src", scriptName);
     // html
     webpackConfig.plugins.push(
       new HtmlWebpackPlugin({
