@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div>
+      <div style="display: flex">
+        <div style="margin: 10px">
+          <canvas
+            id="canvas"
+            width="500"
+            height="500"
+            style="border: solid"
+          ></canvas>
+        </div>
+        <div style="margin: 10px">
+          <div id="disp"></div>
+        </div>
+      </div>
+      <div style="margin: 10px" id="app">
+        <button type="button" id="pauseButton" @click="pause">RUN</button>
+        <button type="button" id="resetButton" @click="load">RESET</button>
+        <table>
+          <tr>
+            <th></th>
+            <th>x</th>
+            <th>y</th>
+            <th>vx</th>
+            <th>vy</th>
+            <th>m</th>
+            <th>color</th>
+          </tr>
+          <tr v-for="point in points">
+            <td>0</td>
+            <td><input type="number" step="0.1" v-model.number="point.x" /></td>
+            <td><input type="number" step="0.1" v-model.number="point.y" /></td>
+            <td>
+              <input type="number" step="0.1" v-model.number="point.vx" />
+            </td>
+            <td>
+              <input type="number" step="0.1" v-model.number="point.vy" />
+            </td>
+            <td><input type="number" step="0.1" v-model.number="point.m" /></td>
+            <td><input type="text" v-model="point.color" /></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

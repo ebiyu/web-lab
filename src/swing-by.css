@@ -1,0 +1,17 @@
+table {
+  border: solid 1px;
+  margin: 5px 0;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 5px 10px;
+  border: solid 1px;
+}
+td > input[type='number'],
+td > input[type='text'] {
+  width: 10em;
+}
+input[type='number'] {
+  text-align: right;
+}
