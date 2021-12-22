@@ -11,6 +11,7 @@
     <p>
       ブラウザ上で動くプログラムの雑多な置き場。スマホ対応はしていないこともある。（していないことが多い）
     </p>
+    <h2>作品一覧</h2>
     <div class="works">
       <a class="work" href="dopp.html">
         <img src="<%=require("./img/index/thumbnails/dopp.png")%>"
@@ -26,6 +27,9 @@
         <img src="<%=require("./img/index/thumbnails/wavegen.png")%>"
         class="work-thumbnail"/>
         <div class="work-caption">波形発生器</div>
+        <div class="work-details">
+          PCで様々な周波数の正弦波や矩形波を再生できるツール。
+        </div>
       </a>
       <a class="work" href="swing-by.html">
         <img src="<%=require("./img/index/thumbnails/swing-by.png")%>"
@@ -38,9 +42,17 @@
         <div class="work-caption">二文字アイコンメーカー</div>
       </a>
     </div>
-    <div>
-      <a href="https://www.ebiyuu.com">作者</a>
-      <a href="https://github.com/ebiyuu1121/web-lab">GitHub</a>
-    </div>
+    <ul class="links">
+      <li>
+        <a href="https://github.com/ebiyuu1121/web-lab" target="_blank">
+          ソースコード(GitHub)
+        </a>
+      </li>
+      <li>
+        <a href="https://www.ebiyuu.com" target="_blank">
+          作者のホームページ
+        </a>
+      </li>
+    </ul>
   </body>
 </html>

@@ -1,29 +1,60 @@
 body {
-  padding: 10px;
+  padding: 0px 20px;
+  background: #f6eff0;
 }
 .works {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   flex-wrap: wrap;
-  margin: 5px;
+  gap: 5px;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include xl {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .work {
   border-radius: 4px;
   border: 1px solid black;
-  margin: 5px;
+  background: white;
+  color: #000;
+  padding: 5px;
   display: block;
   text-decoration: none;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2);
+  &:hover {
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.5);
+  }
 }
 
 .work-thumbnail {
   display: block;
-  margin: 4px;
-  width: 300px;
+  width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
 .work-caption {
+  margin: 5px 0;
   text-align: center;
-  color: #000;
+}
+
+.work-details {
+  margin: 5px 0;
+  font-size: 0.8em;
+  color: #666;
+  text-align: justify;
+}
+
+.links {
+  margin: 50px 0;
 }
