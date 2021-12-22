@@ -1,0 +1,12 @@
+#textbox {
+  width: 10px;
+}
+#label {
+  font-size: 28pt;
+}
+.WA {
+  color: red;
+}
+.AC {
+  color: blue;
+}
