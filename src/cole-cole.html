@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <h1>Cole-Cole plot</h1>
+    <div>
+      <canvas id="canvas" width="500" height="500"></canvas>
+    </div>
+    <div id="app">
+      <table>
+        <tr>
+          <th>R</th>
+          <th>C</th>
+          <th></th>
+        </tr>
+        <tr v-for="(element,i) in elements">
+          <td>
+            <input type="checkbox" v-model.number="element.R.enabled" />
+            <input type="number" v-model.number="element.R.value" />
+          </td>
+          <td>
+            <input type="checkbox" v-model.number="element.C.enabled" />
+            <input type="number" v-model.number="element.C.value" />
+          </td>
+          <td>
+            <button type="button" @click="removeElement(i)">削除</button>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="button" @click="addElement">追加</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
